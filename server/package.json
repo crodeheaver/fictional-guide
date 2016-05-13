@@ -1,0 +1,21 @@
+{
+  "name": "seeker",
+  "version": "1.0.0",
+  "description": "server for seeker chat client",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Colby Rodeheaver",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^0.8.6",
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "glob": "^7.0.3",
+    "jsonwebtoken": "^6.2.0",
+    "mongodb": "^2.1.18",
+    "mongoose": "^4.4.17",
+    "socket.io": "^1.4.6"
+  }
+}
