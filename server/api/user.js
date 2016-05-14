@@ -10,7 +10,7 @@ module.exports.createUser = function(req, res, next) {
    if (!req.body.username || !req.body.password) {
         return res.status(400).send("You must send the username and the password");
     }
-    
+
     new User({
       username: req.body.username,
       password: req.body.password,
@@ -18,7 +18,7 @@ module.exports.createUser = function(req, res, next) {
     .save()
     .then(function (user) {
         res.status(201).send({
-            id_token: createToken(user)
+            access_token: createToken(user)
         });
     })
     .catch(function (err) {
@@ -44,7 +44,7 @@ module.exports.createSession = function(req, res, next) {
             user.comparePassword(req.body.password, function(err, isMatch) {
                 if (isMatch && !err) {
                     res.status(201).send({
-                        id_token: createToken(user)
+                        access_token: createToken(user)
                     });
                 }
             });

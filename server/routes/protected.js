@@ -7,9 +7,13 @@ var jwtCheck = jwt({
   secret: "SUPER SECRET"
 });
 
-app.use('/protected', jwtCheck);
+app.use('/api', jwtCheck);
 
-app.get('/protected/test', function(req, res, next) {
-    res.send("correct");
-});
-
+app.get('/api/codes', function (req, res) {
+    return res.status(200).send({
+      data: [
+        { type: 'code', id: 1, attributes: { description: 'Obama Nuclear Missile Launching Code is: lovedronesandthensa'} },
+        { type: 'code', id: 2, attributes: { description: 'Putin Nuclear Missile Launching Code is: invasioncoolashuntingshirtless'} }
+      ]
+    });
+  });
