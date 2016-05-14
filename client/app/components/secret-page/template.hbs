@@ -1,5 +1,7 @@
 {{! app/templates/components/secret-page.hbs }}
-
+{{#if authManager.currentUser}}
+  Logged in as {{authManager.currentUser.username}}
+{{/if}}
 <h1>OMG DA CODEZ!!</h1>
 
 <ul>

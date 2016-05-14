@@ -26,7 +26,7 @@ module.exports.createUser = function(req, res, next) {
     })
 };
 
-module.exports.createSession = function(req, res, next) {
+module.exports.tokens = function(req, res, next) {
     if (!req.body.username || !req.body.password) {
         return res.status(400).send("You must send the username and the password");
     }

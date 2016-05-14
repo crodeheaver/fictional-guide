@@ -11,7 +11,7 @@ app.post('/users', function(req, res, next) {
     userapi.createUser(req, res, next);
 });
 
-app.post('/sessions/create', function(req, res, next) {
+app.post('/tokens', function(req, res, next) {
   console.log('POST /sessions/create')
-    userapi.createSession(req, res, next);
+    userapi.tokens(req, res, next);
 });
