@@ -4,6 +4,7 @@
   "description": "server for seeker chat client",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Colby Rodeheaver",
@@ -15,6 +16,7 @@
     "express-jwt": "^3.4.0",
     "glob": "^7.0.3",
     "jsonwebtoken": "^6.2.0",
+    "lodash": "^4.12.0",
     "mongodb": "^2.1.18",
     "mongoose": "^4.4.17",
     "socket.io": "^1.4.6"
