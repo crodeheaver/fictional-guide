@@ -8,9 +8,13 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('login');
   this.route('chat', function() {
+    this.route('index',{
+      path: '/'
+    });
     this.route('room', {
       path: '/room/:name'
     });
+    this.route('new');
   });
 });
 

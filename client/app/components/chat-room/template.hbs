@@ -1,0 +1,23 @@
+{{!--<ul>--}}
+{{!--    {{#each model.messages as |message|}}--}}
+{{!--    <li>--}}
+{{!--        <span class="message">{{message.text}}</span>--}}
+{{!--    </li>--}}
+{{!--    {{/each}}--}}
+{{!--</ul>--}}
+User is : {{authManager.currentUser.username}}
+<div class="chat">
+    {{#each model.messages as |message|}}
+        <div class="message">
+            <div>
+                <p>{{message.sender}}: {{message.text}}</p>
+            </div>
+        </div>
+    {{/each}}
+</div>
+
+<form>
+    {{input type='text' id='chatInput' value=chatInput}}
+    <button {{action "sendChat" model}}>Send</button>
+</form>
+

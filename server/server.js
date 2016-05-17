@@ -12,7 +12,7 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/seeker');
 
 app.use(function(req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
+    res.setHeader('Access-Control-Allow-Origin', 'https://seeker-crodeheaver.c9users.io');
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS, PATCH');
     next();
@@ -32,7 +32,9 @@ models.forEach(function(model) {
 app.use(require('./routes/protected'));
 app.use(require('./routes/user'));
 
-app.listen(port);
+app.listen(port,function () {
+  console.log('Seeker listening on port ' + port);
+});
 
 // expose app
 exports = module.exports = app;

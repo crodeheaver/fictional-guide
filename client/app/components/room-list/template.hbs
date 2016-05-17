@@ -1,10 +1,11 @@
 <div class="panel panel-default">
-  <div class="panel-heading">{{list-title}}</div>
+  <div class="panel-heading">{{list-title}} <button class="pull-right">{{#link-to 'chat.new'}}{{fa-icon "plus"}}{{/link-to}}</button></div>
   <div class="panel-body">
     <div class="list-group">
       {{#each model as |item|}}
-        <a href="#" class="list-group-item">{{item.name}}</a>
+      {{#link-to 'chat.room' item.name class="list-group-item"}}{{item.name}}{{/link-to}}
       {{/each}}
     </div>
   </div>
 </div>
+

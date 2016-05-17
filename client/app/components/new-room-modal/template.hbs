@@ -1,0 +1,8 @@
+
+  {{#tether-dialog close='toggleModal'
+                   hasOverlay=false
+                   clickOutsideToClose=true }}
+    <h2>New Chat Room</h2>
+    Name: {{input type='text' value=model.name}}
+    <button {{action 'transitionUp' model}}>Create Room</button>
+  {{/tether-dialog}}

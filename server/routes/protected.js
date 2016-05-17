@@ -23,21 +23,21 @@ app.get('/api/codes', function (req, res) {
 
 app.get('/api/users', function (req, res) {
   console.log('GET /api/users');
-  return res.status(200).send({ data: { id: req.user._id, type:'user', attributes:{ username: req.user.username }}});
+  return res.status(200).send({ data: { id: req.user._doc._id, type:'user', attributes:{ username: req.user._doc.username }}});
 });
 
 app.post('/api/rooms', function(req, res){
   console.log('POST /api/rooms');
   var newRoom = {
-    _id: req.body.data._id,
-    owner: req.body.data.user._id,
+    name: req.body.data.name,
+    owner: req.user._doc._id,
     messges: [],
     users: []
   }
   new Room(newRoom)
         .save()
         .then(function(room) {
-            res.status(201).json({ data: student });
+            res.status(201).json({ data: room });
         })
         .catch(function(err) {
             res.send(err);
@@ -47,6 +47,7 @@ app.post('/api/rooms', function(req, res){
 app.get('/api/rooms', function (req, res){
   console.log('GET /api/rooms');
   Room.find()
+  .sort({name: 1})
   .exec()
   .then(function(rooms){
     var jsonapi = rooms.map(function(room){
@@ -56,4 +57,39 @@ app.get('/api/rooms', function (req, res){
     .status(200)
     .send({ data: jsonapi })
   })
+})
+
+app.get('/api/rooms/:name', function (req, res){
+  console.log('GET /api/room/(name)'+req.params.name);
+  Room.findOne({name:req.params.name})
+  .exec()
+  .then(function(room){
+    return res
+    .status(201)
+    .send({ data: { id: room._id, type: 'room', attributes: _.omit(room, ['_id'])} })
+  })
+})
+
+app.patch('/api/rooms/:_id', function(req, res){
+  console.log('PATCH /api/rooms');
+  
+  
+  var updatedRoom = {
+    name: req.body.data.attributes.name,
+    owner: req.user._doc._id,
+    messages: req.body.data.attributes.messages,
+    users: req.body.data.attributes.users
+  }
+  console.log(req.body.data.id)
+  
+  Room.findByIdAndUpdate(req.body.data.id, updatedRoom)
+        .exec()
+        .then(function(room) {
+            console.log("PATCH /student/" + req.body.id);
+            console.log(room)
+            res.status(200).json({ data: room });
+        })
+        .catch(function(err) {
+            res.send(err);
+        });
 })

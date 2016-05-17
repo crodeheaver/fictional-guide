@@ -1,9 +1,11 @@
 <header>
     <div class="jumbotron jumbotron-primary">
+        <ul class="nav nav-pills pull-right">
+            <li class="active">{{#if session.isAuthenticated}}<a {{action 'invalidateSession'}}>Logout</a> {{else}} {{#link-to 'login'}}Login{{/link-to}} {{/if}}</li>
+        </ul>
         <div class="row">
-            <div class="col-md-3"></div>
+            <div class="col-md-2"></div>
             <h1 class="text-primary col-md-9">{{title}}</h1>
         </div>
-        
     </div>
 </header>

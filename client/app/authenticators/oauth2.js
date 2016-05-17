@@ -1,5 +1,5 @@
 import OAuth2PasswordGrant from 'ember-simple-auth/authenticators/oauth2-password-grant';
 
 export default OAuth2PasswordGrant.extend({
-  serverTokenEndpoint: "http://localhost:8081/tokens"
+  serverTokenEndpoint: "https://seeker-crodeheaver.c9users.io:8081/tokens"
 });
