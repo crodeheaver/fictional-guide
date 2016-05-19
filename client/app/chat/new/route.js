@@ -7,7 +7,6 @@ export default Ember.Route.extend({
     },
     actions: {
         transition: function(param) {
-            console.log(param.get('name'))
             this.transitionTo('chat.room', { queryParams: { name: param.get('name') }});
         }
     },

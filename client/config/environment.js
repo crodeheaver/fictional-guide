@@ -22,7 +22,7 @@ module.exports = function(environment) {
             'default-src': "'none'",
             'script-src': "'self'",
             'font-src': "'self'",
-            'connect-src': "'self' https://seeker-crodeheaver.c9users.io:8081", // Allow data (ajax/websocket) from http://localhost:3001
+            'connect-src': "'self' https://seeker-crodeheaver.c9users.io:8081 http://seeker-crodeheaver.c9users.io:8081", // Allow data (ajax/websocket) from http://localhost:3001
             'img-src': "'self'",
             'style-src': "'self' 'unsafe-inline'", // Allow inline styles
             'media-src': "'self'"

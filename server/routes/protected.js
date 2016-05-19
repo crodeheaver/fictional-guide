@@ -10,7 +10,7 @@ var jwtCheck = jwt({
   secret: "SUPER SECRET"
 });
 
-app.use('/api', jwtCheck);
+app.use('/api', jwt({secret: "SUPER SECRET"}));
 
 app.get('/api/codes', function (req, res) {
   return res.status(200).send({
@@ -60,7 +60,7 @@ app.get('/api/rooms', function (req, res){
 })
 
 app.get('/api/rooms/:name', function (req, res){
-  console.log('GET /api/room/(name)'+req.params.name);
+  console.log('GET /api/room/'+req.params.name);
   Room.findOne({name:req.params.name})
   .exec()
   .then(function(room){
@@ -80,13 +80,10 @@ app.patch('/api/rooms/:_id', function(req, res){
     messages: req.body.data.attributes.messages,
     users: req.body.data.attributes.users
   }
-  console.log(req.body.data.id)
   
   Room.findByIdAndUpdate(req.body.data.id, updatedRoom)
         .exec()
         .then(function(room) {
-            console.log("PATCH /student/" + req.body.id);
-            console.log(room)
             res.status(200).json({ data: room });
         })
         .catch(function(err) {

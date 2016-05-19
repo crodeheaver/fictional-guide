@@ -5,6 +5,16 @@
 @import "ember-modal-dialog/ember-modal-structure";
 @import "ember-modal-dialog/ember-modal-appearance";
 
+footer{
+    position: absolute;
+    bottom: 0;
+    width:100%;
+    margin-top: 30px;
+}
+
+.jumbotron-footer{
+    margin-bottom: 0;
+}
 .jumbotron-primary{
     background-color: $brand-primary;
     color: white;
@@ -12,11 +22,12 @@
 
 .chat {
     display: block;
-    width: 100%;
-    height: 100%;
+    overflow: scroll;
     overflow-y: scroll;
     overflow-x: hidden;
     background: #eee;
+    min-height: 300px;
+    max-height: 300px;
 
     & .message {
         display: flex;
@@ -100,6 +111,7 @@
 .chat {
     border-radius: 5px;
 }
+
 
 @media (max-height: 400px) {
     #device {

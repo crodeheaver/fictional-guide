@@ -6,5 +6,6 @@ export default Model.extend({
   name: attr('string'),
   owner: belongsTo('user'),
   messages: attr('array'),
-  users: attr('array')
+  users: attr('array'),
+  isPublic: attr('boolean')
 });
