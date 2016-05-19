@@ -29,7 +29,7 @@ app.get('/api/users', function (req, res) {
 app.post('/api/rooms', function(req, res){
   console.log('POST /api/rooms');
   var newRoom = {
-    name: req.body.data.name,
+    name: req.body.data.attributes.name,
     owner: req.user._doc._id,
     messges: [],
     users: []
@@ -37,7 +37,7 @@ app.post('/api/rooms', function(req, res){
   new Room(newRoom)
         .save()
         .then(function(room) {
-            res.status(201).json({ data: room });
+            res.status(201).json({ data: { id: newRoom._id, type: 'room', attributes: _.omit(room, ['_id'])} });
         })
         .catch(function(err) {
             res.send(err);

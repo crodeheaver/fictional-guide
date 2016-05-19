@@ -4,8 +4,7 @@ var Schema = mongoose.Schema
 var roomSchema = new Schema({
     "name": { type: String, required: true, unique: true },
     "owner": {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        type: 'String'
     },
     "messages": [],
     "users": [{

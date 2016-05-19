@@ -9,11 +9,12 @@
         {{/each}}
     </div>
 
-    <form>
-        {{input type='text' id='chatInput' value=chatInput}}
-        <button {{action "sendChat" }}>Send</button>
+    <form class="form-inline">
+        <div class="form-group" style='width:100%'>
+            {{input type='text' style="width:89%" class="form-control" id='chatInput' value=chatInput}}
+            <button {{action "sendChat" }}>Send</button>
+        </div>
     </form>
-
 </div>
 <div class="col-md-3">
     <div class="panel panel-default">

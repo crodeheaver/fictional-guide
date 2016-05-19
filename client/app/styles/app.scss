@@ -5,6 +5,9 @@
 @import "ember-modal-dialog/ember-modal-structure";
 @import "ember-modal-dialog/ember-modal-appearance";
 
+#chatInput{
+    width:89%;
+}
 footer{
     position: absolute;
     bottom: 0;
@@ -28,6 +31,7 @@ footer{
     background: #eee;
     min-height: 300px;
     max-height: 300px;
+    margin-bottom: 10px;
 
     & .message {
         display: flex;

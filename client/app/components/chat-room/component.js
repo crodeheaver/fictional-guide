@@ -42,6 +42,7 @@ export default Ember.Component.extend({
         this.get('model').get('messages').pushObject(message);
     },
     onUpdate(list){
+        list.sort();
         this.set('userList', list);
     },
     didUpdateAttrs(){
@@ -51,7 +52,7 @@ export default Ember.Component.extend({
 
     willDestroyElement() {
         const socket = this.get('socketRef');
-        
+        socket.emit('disconnect')
         socket.off('connect', this.onConnect);
         socket.off('message', this.onMessage);
         socket.off('updateusers', this.onUpdate);

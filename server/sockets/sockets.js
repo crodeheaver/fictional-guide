@@ -53,14 +53,15 @@ module.exports = function(io) {
             socket.leave(socket.room);
             // join new room, received as function parameter
             socket.join(newroom);
-            
+            if (room[newroom] == undefined)
+                room[newroom] = [];
+            console.log(room[socket.room])
             var index = room[socket.room].indexOf(socket.username);
             room[socket.room].splice(index, 1);
             socket.broadcast.to(socket.room).emit('updateusers', room[socket.room]);
             // update socket session room title
             socket.room = newroom;
-            if (room[socket.room] === undefined)
-                room[socket.room] = [];
+            console.log(room[socket.room])
             room[socket.room].push(socket.username);
             console.log('users in ', socket.room, ':', room[socket.room])
             io.sockets.in(socket.room).emit('updateusers', room[socket.room]);
@@ -71,5 +72,33 @@ module.exports = function(io) {
             room[socket.room].splice(index, 1);
             io.sockets.in(socket.room).emit('updateusers', room[socket.room]);
         })
+
+        socket.on('newroom', function(data) {
+            console.log('newroom')
+
+            new Room(data)
+                .save()
+                .then(function(room) {
+                    console.log('saved')
+                    io.emit('addroom', data);
+                })
+                .catch(function(err) {
+                    console.log(err)
+                });
+
+            //io.emit('addroom', data);
+        })
+        socket.on('disconnect', function() {
+            console.log('disconnect')
+                // remove the username from global usernames list
+            if (room[socket.room] === undefined)
+                room[socket.room] = [];
+            var index = room[socket.room].indexOf(socket.username);
+            room[socket.room].splice(index, 1);
+            // update list of users in chat, client-side
+            console.log('users in ', socket.room, ':', room[socket.room])
+            io.sockets.emit('updateusers', room[socket.room]);
+            socket.leave(socket.room);
+        });
     });
 }
