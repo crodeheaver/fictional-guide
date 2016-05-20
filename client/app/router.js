@@ -16,6 +16,7 @@ Router.map(function() {
     });
     this.route('new');
   });
+  this.route('register');
 });
 
 export default Router;

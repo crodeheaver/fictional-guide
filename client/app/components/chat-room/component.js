@@ -14,6 +14,7 @@ export default Ember.Component.extend({
                 text: this.get('chatInput'),
                 dateStamp: Date.now()
             };
+            this.set('chatInput', '');
             var socket = this.get('socketRef');
             socket.emit('newmessage', message);
         }
