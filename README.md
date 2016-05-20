@@ -36,3 +36,7 @@ future stuff:
 http://feathersjs.com/
 http://socketcluster.io/#!/
 http://discuss.emberjs.com/t/ember-and-sockets/7588/3
+http://riotjs.com/
+http://cycle.js.org/
+https://github.com/thejameskyle/the-super-tiny-compiler
+http://horizon.io/docs/examples/
